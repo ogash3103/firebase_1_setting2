@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "318404960454",
+    "project_id": "fistproject-8256a",
+    "storage_bucket": "fistproject-8256a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318404960454:android:181ed363c47934845df7c7",
+        "android_client_info": {
+          "package_name": "com.example.firebase_1_setting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgPCBJF5NkSqbuAPFyeT5XrRWogeOYKEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
