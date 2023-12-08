@@ -1,6 +1,7 @@
-import 'package:firebase_1_setting/page/postPage.dart';
+
 import 'package:flutter/material.dart';
 import '../service/realTimeDatabase.dart';
+import 'postPage.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({Key? key});
@@ -12,26 +13,40 @@ class CreatePage extends StatefulWidget {
 class _CreatePageState extends State<CreatePage> {
   var titleController = TextEditingController();
   var contentController = TextEditingController();
+  var firstNameController = TextEditingController();
+  var lastNameController = TextEditingController();
+  var contactController = TextEditingController();
+  var dateController = TextEditingController();
   var isLoading = false;
 
   _createPost() {
-    String employee_name = titleController.text.toString();
-    String employee_age = contentController.text.toString();
+    String firstName = firstNameController.text.toString();
+    String lastName = lastNameController.text.toString();
+    String contact = contactController.text.toString();
+    String date = dateController.text.toString();
 
-    if (employee_name.isEmpty || employee_age.isEmpty) return;
+    if (firstName.isEmpty ||
+        lastName.isEmpty ||
+        contact.isEmpty ||
+        date.isEmpty) {
+      return;
+    }
 
-    _apiCreatePost(employee_name, employee_age);
+    _apiCreatePost(firstName, lastName, contact, date);
   }
 
-  _apiCreatePost(String employee_name, String employee_age) {
+  _apiCreatePost( String firstName,
+      String lastName, String contact, String date) {
     setState(() {
       isLoading = true;
     });
 
     var g = Post(
       id: 1,
-      employee_name: employee_name,
-      employee_salary: employee_age,
+      firstName: firstName,
+      lastName: lastName,
+      contact: contact,
+      date: date,
     );
 
     RTDBService.addPost(g).then((value) {
@@ -60,29 +75,56 @@ class _CreatePageState extends State<CreatePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextField(
-                  controller: titleController,
+                  controller: firstNameController,
                   decoration: InputDecoration(
-                    hintText: "Title",
+                    hintText: "First Name",
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 TextField(
-                  controller: contentController,
+                  controller: lastNameController,
                   decoration: InputDecoration(
-                    hintText: "Age",
+                    hintText: "Last Name",
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  controller: contactController,
+                  decoration: InputDecoration(
+                    hintText: "Contact",
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  controller: dateController,
+                  decoration: InputDecoration(
+                    hintText: "Date",
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 MaterialButton(
                   onPressed: () {
                     _createPost();
                   },
                   color: Colors.blue,
-                  child: Text("Create", style: TextStyle(color: Colors.white)),
+                  child: Text("Create",
+                      style: TextStyle(color: Colors.white)),
                 )
               ],
             ),
-            isLoading ? const Center(child: CircularProgressIndicator(),) : SizedBox.shrink()
+            isLoading
+                ? const Center(
+              child: CircularProgressIndicator(),
+            )
+                : SizedBox.shrink()
           ],
         ),
       ),

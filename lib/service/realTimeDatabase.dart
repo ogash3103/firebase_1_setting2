@@ -1,5 +1,8 @@
+// rtdb_service.dart
+
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
+
 import '../page/postPage.dart';
 
 class RTDBService {
@@ -18,13 +21,13 @@ class RTDBService {
       var jsonPost = jsonEncode(child.value);
       Map<String, dynamic> map = jsonDecode(jsonPost);
       var post = Post(
-        employee_name: map['employee_name'],
-        employee_salary: map['employee_salary'],
-        id: map['id'],
+        firstName: map['firstName'],
+        lastName: map['lastName'],
+        contact: map['contact'],
+        date: map['date'],
       );
       items.add(post);
     }
     return items;
   }
-
 }

@@ -4,11 +4,24 @@ import 'package:firebase_1_setting/page/sigInPage.dart';
 import 'package:firebase_1_setting/page/splashPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyAzCAg_P6DtHV80cPmhkGKkpGDQu5wifrQ",
+          appId: "1:885652404368:web:3963c3be5a585bd1b44015",
+          messagingSenderId: "885652404368",
+          projectId: "instaproject-eb5ea",
+          storageBucket: 'com.example.firebase_1_setting'),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   runApp(MyApp());
 }
 

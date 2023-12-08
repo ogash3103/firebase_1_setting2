@@ -2,8 +2,8 @@ import 'package:firebase_1_setting/service/realTimeDatabase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'CreatePage.dart';
-import 'PostPage.dart';
 import '../service/auth_service.dart';
+import 'postPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -89,18 +89,30 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+               const SizedBox(height: 10,),
                 Text(
-                  post.employee_name!,
+                  'First Name: ${post.firstName}',
                   style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10,),
                 Text(
-                  post.employee_age.toString(),
+                  'Last Name: ${post.lastName}',
+                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10,),
+                Text(
+                  'Contact: ${post.contact}',
+                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10,),
+                Text(
+                  'Data: ${post.date}',
                   style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -123,13 +135,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           SlidableAction(
             onPressed: (BuildContext context) {},
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.red,
             foregroundColor: Colors.white,
-            icon: Icons.edit,
+            icon: Icons.delete,
             label: "Delete",
           ),
         ],
       ),
     );
   }
+
 }
