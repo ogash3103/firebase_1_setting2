@@ -6,7 +6,7 @@ import '../service/auth_service.dart';
 import 'postPage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key});
+  const HomePage({super.key, Key});
   static const String id = "home_page";
 
   @override
@@ -18,11 +18,11 @@ class _HomePageState extends State<HomePage> {
   List<Post> items = [];
 
   Future _callCreatePage() async {
-    Map results = await Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) {
-      return CreatePage();
+    Map results = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+      return const CreatePage();
     }));
 
-    if (results != null && results.containsKey("data")) {
+    if (results.containsKey("data")) {
       print(results['data']);
       _apiPostList();
     }
@@ -49,13 +49,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("FireBase"),
+        title: const Text("FireBase"),
         actions: [
           IconButton(
             onPressed: () {
               AuthService.signOutUser(context);
             },
-            icon: Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app),
           ),
         ],
       ),
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
               return itemOfPost(items[index]);
             },
           ),
-          isLoading ? const Center(child: CircularProgressIndicator(),) : SizedBox.shrink(),
+          isLoading ? const Center(child: CircularProgressIndicator(),) : const SizedBox.shrink(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -76,46 +76,13 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           _callCreatePage();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
 
   Widget itemOfPost(Post post) {
     return Slidable(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               const SizedBox(height: 10,),
-                Text(
-                  'First Name: ${post.firstName}',
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10,),
-                Text(
-                  'Last Name: ${post.lastName}',
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10,),
-                Text(
-                  'Contact: ${post.contact}',
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10,),
-                Text(
-                  'Data: ${post.date}',
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
         dismissible: DismissiblePane(onDismissed: () {}),
@@ -141,6 +108,44 @@ class _HomePageState extends State<HomePage> {
             label: "Delete",
           ),
         ],
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 70,
+              height: 70,
+              child: post.img_url != null ? Image.network(post.img_url!, fit: BoxFit.cover,) : Image.asset("assets/images/user.jpg"),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+               const SizedBox(height: 10,),
+                Text(
+                  'First Name: ${post.firstName}',
+                  style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10,),
+                Text(
+                  'Last Name: ${post.lastName}',
+                  style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10,),
+                Text(
+                  'Contact: ${post.contact}',
+                  style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10,),
+                Text(
+                  'Data: ${post.date}',
+                  style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,14 +1,12 @@
 import 'dart:async';
 
-import 'package:firebase_1_setting/page/SigUpPage.dart';
 import 'package:firebase_1_setting/page/homePage.dart';
-import 'package:firebase_1_setting/page/mainPage.dart';
 import 'package:firebase_1_setting/page/sigInPage.dart';
 import 'package:firebase_1_setting/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key});
+  const SplashPage({super.key, Key});
   static const String id = "splash_page";
 
   @override
@@ -47,16 +45,16 @@ class _SplashPageState extends State<SplashPage> {
             ],
           ),
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Expanded(
               child: Center(
-                child: const Text("Welcome", style: TextStyle(color: Colors.white, fontSize: 35),),
+                child: Text("Welcome", style: TextStyle(color: Colors.white, fontSize: 35),),
               ),
             ),
-            const Text("All rights reserved", style: TextStyle(color: Colors.white, fontSize: 16),),
-            const SizedBox(height: 20,),
+            Text("All rights reserved", style: TextStyle(color: Colors.white, fontSize: 16),),
+            SizedBox(height: 20,),
           ],
         ),
       ),

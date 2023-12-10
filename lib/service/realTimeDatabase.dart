@@ -14,8 +14,8 @@ class RTDBService {
 
   static Future<List<Post>> getPosts() async {
     List<Post> items = [];
-    Query _query = _database.ref.child("posts");
-    DatabaseEvent event = await _query.once();
+    Query query = _database.ref.child("posts");
+    DatabaseEvent event = await query.once();
     var snapshot = event.snapshot;
     for (var child in snapshot.children) {
       var jsonPost = jsonEncode(child.value);
@@ -25,6 +25,7 @@ class RTDBService {
         lastName: map['lastName'],
         contact: map['contact'],
         date: map['date'],
+        img_url: map['img_url'],
       );
       items.add(post);
     }

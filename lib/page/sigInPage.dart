@@ -1,12 +1,11 @@
 import 'package:firebase_1_setting/page/SigUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../service/auth_service.dart';
 import 'homePage.dart';
 
 class SigInPage extends StatefulWidget {
-  const SigInPage({Key? key}) : super(key: key);
+  const SigInPage({super.key});
   static const String id = "sigIn_page";
 
   @override
@@ -124,7 +123,7 @@ class _SigInPageState extends State<SigInPage> {
                 ),
               ],
             ),
-            isLoading ? const Center(child: CircularProgressIndicator(),) : SizedBox.shrink()
+            isLoading ? const Center(child: CircularProgressIndicator(),) : const SizedBox.shrink()
           ],
         ),
       ),

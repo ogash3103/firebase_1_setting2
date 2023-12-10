@@ -172,7 +172,7 @@ class _SigUpPageState extends State<SigUpPage> {
                 ),
               ],
             ),
-            isLoading ? const Center(child: CircularProgressIndicator(),) : SizedBox.shrink()
+            isLoading ? const Center(child: CircularProgressIndicator(),) : const SizedBox.shrink()
           ],
         )
       ),

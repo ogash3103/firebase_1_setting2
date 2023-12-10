@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 class Post {
   int? id;
@@ -6,6 +5,7 @@ class Post {
   String? lastName;
   String? contact;
   String? date;
+  String? img_url;
 
   Post({
     this.id,
@@ -13,6 +13,7 @@ class Post {
     this.lastName,
     this.contact,
     this.date,
+   this.img_url
   });
 
   Post.fromJson(Map<String, dynamic> json)
@@ -20,7 +21,8 @@ class Post {
         firstName = json['firstName'],
         lastName = json['lastName'],
         contact = json['contact'],
-        date = json['date'];
+        date = json['date'],
+       img_url = json['img_url'];
 
   Map<String, dynamic> toJson() => {
     'id': id,
@@ -28,5 +30,6 @@ class Post {
     'lastName': lastName,
     'contact': contact,
     'date': date,
+    'img_url': img_url,
   };
 }

@@ -1,4 +1,3 @@
-import 'package:firebase_1_setting/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,7 +12,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // body: Center(
       //   child: MaterialButton(
       //     onPressed: (){
